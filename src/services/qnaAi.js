@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: "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",
 });
 
 export default class Qna {

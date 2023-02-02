@@ -1,8 +1,11 @@
 const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export default class Qna {
     constructor() {
-        this.AI = null
+        this.AI = new OpenAIApi(configuration)
         this.model = "text-davinci-003"
         this.settings = {
             temperature: 0,
@@ -25,14 +28,23 @@ export default class Qna {
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,
             ...this.settings
-            })
+        })
     })
 
     async getData(query, onSuccess, onError) {
         const requestOptions = this.createRequestOptions(query)
 
         try {
-            const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
+            const res = await this.AI.createCompletion(
+                { temperature: 0,
+                    max_tokens: 100,
+                    top_p: 1,
+                    frequency_penalty: 0.0,
+                    presence_penalty: 0.0,
+                    stop: ["\n"],
+                    'prompt': `\n\nQ: ${query}\nA:` }
+                );
+            // const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
             const { choices } = await res.json()
 
             onSuccess(choices[0])

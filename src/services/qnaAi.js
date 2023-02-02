@@ -1,11 +1,8 @@
 const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-    apiKey: "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",
-});
-
+/*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*/
 export default class Qna {
     constructor() {
-        this.AI = new OpenAIApi(configuration)
+        this.AI = null
         this.model = "text-davinci-003"
         this.settings = {
             temperature: 0,
@@ -22,29 +19,19 @@ export default class Qna {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + "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",
-            'OpenAI-Organization': 'OpenEdTech'
+            'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,
             ...this.settings
-        })
+            })
     })
 
     async getData(query, onSuccess, onError) {
         const requestOptions = this.createRequestOptions(query)
 
         try {
-            const res = await this.AI.createCompletion(
-                { temperature: 0,
-                    max_tokens: 100,
-                    top_p: 1,
-                    frequency_penalty: 0.0,
-                    presence_penalty: 0.0,
-                    stop: ["\n"],
-                    'prompt': `\n\nQ: ${query}\nA:` }
-                );
-            // const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
+            const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
             const { choices } = await res.json()
 
             onSuccess(choices[0])

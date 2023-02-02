@@ -20,7 +20,7 @@ export default class Qna {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + "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",
-            'OpenAI-Organization': 'OpenEdTech"
+            'OpenAI-Organization': 'OpenEdTech'
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,

@@ -19,7 +19,7 @@ export default class Qna {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + "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",
+            'Authorization': 'Bearer ' + "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",
             'OpenAI-Organization': 'OpenEdTech'
         },
         body: JSON.stringify({

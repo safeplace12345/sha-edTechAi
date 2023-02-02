@@ -1,0 +1,10 @@
+POST url HTTP/1.1
+"content-Type": "application/json"
+"Authorization": "Bearer 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"
+
+content {
+"model": "text-davinci-003",
+  "prompt": "What is google",
+  "max_tokens": 7,
+  "temperature": 0
+}

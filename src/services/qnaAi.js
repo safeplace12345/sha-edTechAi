@@ -1,5 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 /*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*/
+const key = process.env.OPENAI_API_KEY
 export default class Qna {
     constructor() {
         this.AI = null
@@ -13,14 +14,14 @@ export default class Qna {
             stop: ["\n"],
         }
         this.errorCode = 'AI'
-        console.log(process.env.OPENAI_API_KEY)
+        console.log(key)
     }
     
     createRequestOptions = (prompt) => ({
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY
+            'Authorization': 'Bearer ' + key
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,

@@ -13,8 +13,9 @@ export default class Qna {
             stop: ["\n"],
         }
         this.errorCode = 'AI'
+        console.log(process.env.OPENAI_API_KEY)
     }
-
+    
     createRequestOptions = (prompt) => ({
         method: 'POST',
         headers: {

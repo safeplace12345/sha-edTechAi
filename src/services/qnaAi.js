@@ -19,7 +19,7 @@ export default class Qna {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + process.env.API_KEY || "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"
+            'Authorization': 'Bearer ' + "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"
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,

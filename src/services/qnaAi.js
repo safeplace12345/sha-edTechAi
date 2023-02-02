@@ -1,12 +1,8 @@
 const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration({
-    apiKey: "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",
-});
-
+/*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*/
 export default class Qna {
     constructor() {
-        this.AI = new OpenAIApi(configuration);
+        this.AI = null
         this.model = "text-davinci-003"
         this.settings = {
             temperature: 0,
@@ -23,7 +19,7 @@ export default class Qna {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + "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"
+            'Authorization': 'Bearer ' + process.env.API_KEY
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,

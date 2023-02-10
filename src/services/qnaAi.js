@@ -1,6 +1,9 @@
 const { Configuration, OpenAIApi } = require("openai");
-/*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*/
-const key = process.env.OPENAI_API_KEY
+const configuration = new Configuration({
+    apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
+
 export default class Qna {
     constructor() {
         this.AI = null
@@ -14,14 +17,13 @@ export default class Qna {
             stop: ["\n"],
         }
         this.errorCode = 'AI'
-        console.log(key)
     }
     
     createRequestOptions = (prompt) => ({
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + key
+            'Authorization': 'Bearer ' + "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"
         },
         body: JSON.stringify({
             'prompt': `\n\nQ: ${prompt}\nA:`,
@@ -33,9 +35,18 @@ export default class Qna {
         const requestOptions = this.createRequestOptions(query)
 
         try {
-            const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
-            const { choices } = await res.json()
-
+                const res = await openai.createCompletion({
+                    model: "text-davinci-003",
+                    prompt: `\n\nQ: ${query}\nA:`,
+                    temperature: 0,
+                    max_tokens: 100,
+                    top_p: 1,
+                    frequency_penalty: 0.0,
+                    presence_penalty: 0.0,
+                    stop: ["\n"],
+                })
+            // const res = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', requestOptions)
+            const { choices } = await res.data
             onSuccess(choices[0])
             return (choices[0])
         } catch (e) {

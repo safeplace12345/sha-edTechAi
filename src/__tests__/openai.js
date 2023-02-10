@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -21,4 +21,4 @@ const response = async () => {
 /**
  * Call tests with node js for now 
  */
-// response()
+response()

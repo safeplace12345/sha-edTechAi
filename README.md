@@ -1,9 +1,13 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements 
+Python 3.2^
+Node 14^
+pip 1.3^
 
 ## Available Scripts
 
+export OPENAI_API_KEY=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
+` openai api completions.create -m davinci:ft-openedtech-2023-02-15-18-22-24 -p "<What is Teaching and learning of foreign languages>" -M 50 `
+ 
 In the project directory, you can run:
 
 ### `npm start`
